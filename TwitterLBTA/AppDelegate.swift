@@ -16,6 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //ignore story  board, explained in ep 2
+        //every app runs in window, storyboard usually does this but we are ignoring story board
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        //window must have a root view controlleer, need to initiliaze with non-nil layout parameter
+        let homeController = HomeController(collectionViewLayout: UICollectionViewFlowLayout())
+        window?.rootViewController = UINavigationController(rootViewController: homeController)
+        
+
         return true
     }
 
