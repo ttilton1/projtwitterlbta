@@ -9,23 +9,35 @@
 import Foundation
 import UIKit
 
+class WordCell: UICollectionViewCell {
+    //this gets called when a cell is dequeued
+    override init(frame: CGRect){
+        super.init(frame: frame)
+        backgroundColor = .yellow
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "cellId"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.backgroundColor = .green
+        collectionView?.backgroundColor = .white
         //register cellID to unique collection view cellClass
         //cells defaulted to transparent, and 50x50
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        //to put words lets register our own custom cell for UICollectionViewCell
+        collectionView?.register(WordCell.self, forCellWithReuseIdentifier: cellId)
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .blue
         return cell
     }
     //want to change cell dimensions
